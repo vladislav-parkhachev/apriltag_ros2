@@ -12,6 +12,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(apriltag_ros2 REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -33,6 +34,9 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 ament_export_dependencies(rosidl_default_runtime)
 
+add_executable(apriltag_ros2_single_image_detector src/apriltag_ros2_single_image_server_node.cpp)
+ament_target_dependencies(apriltag_ros2_single_image_detector rclcpp std_msgs apriltag_ros2)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -44,5 +48,9 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+install(TARGETS
+    apriltag_ros2_single_image_detector
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
