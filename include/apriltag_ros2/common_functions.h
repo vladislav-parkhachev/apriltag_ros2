@@ -125,8 +125,8 @@ private:
 
  public:
 
-    // TagDetector(ros::NodeHandle pnh);
-    // ~TagDetector();
+    TagDetector(std::shared_ptr<rclcpp::Node> node);
+    ~TagDetector();
 
     // Store standalone and bundle tag descriptions
     // std::map<int, StandaloneTagDescription> parseStandaloneTags(XmlRpc::XmlRpcValue& standalone_tag_descriptions);
