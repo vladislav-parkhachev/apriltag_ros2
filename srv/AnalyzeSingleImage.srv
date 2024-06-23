@@ -1,0 +1,5 @@
+string full_path_where_to_get_image
+string full_path_where_to_save_image
+sensor_msgs/CameraInfo camera_info
+---
+apriltag_ros2/AprilTagDetectionArray tag_detections
