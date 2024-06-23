@@ -13,6 +13,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(cv_bridge REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 find_package(OpenCV REQUIRED)
@@ -44,18 +45,21 @@ ament_export_dependencies(rosidl_default_runtime)
 
 include_directories(include)
 
-add_executable(apriltag_ros2_single_image_detector src/apriltag_ros2_single_image_server_node.cpp)
-ament_target_dependencies(apriltag_ros2_single_image_detector 
+add_executable(apriltag_ros2_single_image_server_node src/apriltag_ros2_single_image_server_node.cpp)
+ament_target_dependencies(apriltag_ros2_single_image_server_node 
   rclcpp 
   std_msgs 
+  geometry_msgs
+  sensor_msgs
   apriltag 
   tf2_ros 
+  cv_bridge
   OpenCV)
 
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} rosidl_typesupport_cpp)
 
-target_link_libraries(apriltag_ros2_single_image_detector "${cpp_typesupport_target}")
+target_link_libraries(apriltag_ros2_single_image_server_node "${cpp_typesupport_target}")
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -70,7 +74,7 @@ if(BUILD_TESTING)
 endif()
 
 install(TARGETS
-    apriltag_ros2_single_image_detector
+apriltag_ros2_single_image_server_node
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
