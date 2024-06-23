@@ -1,7 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
-
 #include "apriltag_ros2/srv/analyze_single_image.hpp"
 
+#include "apriltag_ros2/single_image_detector.h"
 
 int main(int argc, char **argv)
 {

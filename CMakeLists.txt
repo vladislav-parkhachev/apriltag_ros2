@@ -7,15 +7,20 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
-find_package(apriltag_ros2 REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+find_package(apriltag REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+get_target_property(apriltag_INCLUDE_DIRS apriltag::apriltag INTERFACE_INCLUDE_DIRECTORIES)
+get_target_property(apriltag_LIBRARIES apriltag::apriltag INTERFACE_LINK_LIBRARIES)
 
 set(srv_files
   "srv/AnalyzeSingleImage.srv"
@@ -34,8 +39,15 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 ament_export_dependencies(rosidl_default_runtime)
 
+include_directories(include)
+
 add_executable(apriltag_ros2_single_image_detector src/apriltag_ros2_single_image_server_node.cpp)
-ament_target_dependencies(apriltag_ros2_single_image_detector rclcpp std_msgs apriltag_ros2)
+ament_target_dependencies(apriltag_ros2_single_image_detector rclcpp std_msgs apriltag)
+
+rosidl_get_typesupport_target(cpp_typesupport_target
+  ${PROJECT_NAME} rosidl_typesupport_cpp)
+
+target_link_libraries(apriltag_ros2_single_image_detector "${cpp_typesupport_target}")
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
