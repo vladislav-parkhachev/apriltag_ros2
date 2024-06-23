@@ -12,7 +12,10 @@ find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+
+find_package(OpenCV REQUIRED)
 
 find_package(apriltag REQUIRED)
 # uncomment the following section in order to fill in
@@ -42,7 +45,12 @@ ament_export_dependencies(rosidl_default_runtime)
 include_directories(include)
 
 add_executable(apriltag_ros2_single_image_detector src/apriltag_ros2_single_image_server_node.cpp)
-ament_target_dependencies(apriltag_ros2_single_image_detector rclcpp std_msgs apriltag)
+ament_target_dependencies(apriltag_ros2_single_image_detector 
+  rclcpp 
+  std_msgs 
+  apriltag 
+  tf2_ros 
+  OpenCV)
 
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} rosidl_typesupport_cpp)
