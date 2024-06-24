@@ -15,6 +15,9 @@ find_package(sensor_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+find_package(image_geometry REQUIRED)
+find_package(tf2 REQUIRED)
+
 
 find_package(OpenCV REQUIRED)
 

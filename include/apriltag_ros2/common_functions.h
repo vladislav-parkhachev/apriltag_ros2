@@ -4,6 +4,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/camera_info.hpp"
 #include "geometry_msgs/msg/pose_with_covariance_stamped.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
 #include "std_msgs/msg/header.hpp"
 #include "tf2_ros/transform_broadcaster.h"
 #include <cv_bridge/cv_bridge.h>
@@ -129,7 +130,7 @@ private:
     bool remove_duplicates_;
     bool run_quietly_;
     bool publish_tf_;
-    tf2_ros::TransformBroadcaster tf_pub_;
+    tf2_ros::TransformBroadcaster* tf_pub_;
 
  public:
 
