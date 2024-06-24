@@ -19,6 +19,14 @@
 namespace apriltag_ros2
 {
 
+template<typename T>
+T getAprilTagOption(std::shared_ptr<rclcpp::Node> node, const std::string& param_name, const T & default_val)
+{
+    T param_val;
+    node->declare_parameter<T>(param_name, param_val, default_val);
+    return param_val;
+}
+
 struct TagBundleMember
 {
     int id; // Payload ID
