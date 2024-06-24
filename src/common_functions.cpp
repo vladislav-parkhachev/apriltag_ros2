@@ -49,5 +49,26 @@ namespace apriltag_ros2
         detections_ = NULL;
     }
 
+    // destructor
+    TagDetector::~TagDetector() {
+
+        // free memory associated with tag detector
+        apriltag_detector_destroy(td_);
+
+        // Free memory associated with the array of tag detections
+        if(detections_){ apriltag_detections_destroy(detections_); }
+
+        // free memory associated with tag family
+        if (family_ == "tagStandard52h13")      { tagStandard52h13_destroy(tf_);}
+        else if (family_ == "tagStandard41h12") { tagStandard41h12_destroy(tf_); }
+        else if (family_ == "tag36h11")         { tag36h11_destroy(tf_); }
+        else if (family_ == "tag25h9")          { tag25h9_destroy(tf_); }
+        else if (family_ == "tag16h5")          { tag16h5_destroy(tf_); }
+        else if (family_ == "tagCustom48h12")   { tagCustom48h12_destroy(tf_); }
+        else if (family_ == "tagCircle21h7")    { tagCircle21h7_destroy(tf_); }
+        else if (family_ == "tagCircle49h12")   { tagCircle49h12_destroy(tf_); }
+
+    }
+
 }
 
