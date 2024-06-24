@@ -6,12 +6,8 @@
 int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
-
   std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("apriltag_ros2_single_image_server");
-
-//   rclcpp::Service<apriltag_ros2::srv::AnalyzeSingleImage>::SharedPtr service = 
-//     node->create_service<apriltag_ros2::srv::AnalyzeSingleImage>("single_image_tag_detection", &add);
-
+  // apriltag_ros2::SingleImageDetector single_tag_detector(node);
   rclcpp::spin(node);
   rclcpp::shutdown();
 }
