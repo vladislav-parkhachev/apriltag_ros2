@@ -134,8 +134,8 @@ private:
 
  public:
 
-    TagDetector(std::shared_ptr<rclcpp::Node> node);
-    ~TagDetector();
+    // TagDetector(std::shared_ptr<rclcpp::Node> node);
+    // ~TagDetector();
 
     // Store standalone and bundle tag descriptions
     // std::map<int, StandaloneTagDescription> parseStandaloneTags(XmlRpc::XmlRpcValue& standalone_tag_descriptions);
@@ -143,7 +143,7 @@ private:
     // double xmlRpcGetDouble(XmlRpc::XmlRpcValue& xmlValue, std::string field) const;
     // double xmlRpcGetDoubleWithDefault(XmlRpc::XmlRpcValue& xmlValue, std::string field, double defaultValue) const;
 
-    bool findStandaloneTagDescription(int id, StandaloneTagDescription*& descriptionContainer, bool printWarning = true);
+    // bool findStandaloneTagDescription(int id, StandaloneTagDescription*& descriptionContainer, bool printWarning = true);
 
     geometry_msgs::msg::PoseWithCovarianceStamped makeTagPose(const Eigen::Isometry3d& transform, const std_msgs::msg::Header& header);
 
